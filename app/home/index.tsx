@@ -20,7 +20,7 @@ const HomeScreen = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View
-        className="mt-2 bg-slate-500 h-full pb-10"
+        className="mt-2 bg-slate-700 h-full pb-10"
         style={{ paddingTop: safeArea.top }}
       >
         <Text className="text-3xl font-bold px-4 mb-2 color-white">

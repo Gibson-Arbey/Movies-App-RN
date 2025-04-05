@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import MoviePoster from "./MoviePoster";
 import { Movie } from "@/infrastruture/interfaces/movie.interface";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Props {
   title?: string;
@@ -17,8 +17,20 @@ interface Props {
   loadNextPage?: () => void;
 }
 
-const MovieHorizontalList = ({ title, movies, className, loadNextPage }: Props) => {
+const MovieHorizontalList = ({
+  title,
+  movies,
+  className,
+  loadNextPage,
+}: Props) => {
   const isLoading = useRef(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      isLoading.current = false;
+    }, 200);
+  }, [movies]);
+
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isLoading.current) return;
 
@@ -31,13 +43,13 @@ const MovieHorizontalList = ({ title, movies, className, loadNextPage }: Props) 
 
     isLoading.current = true;
 
-    console.log('Cargar siguientes películas');
+    console.log("Cargar siguientes películas");
     loadNextPage && loadNextPage();
   };
   return (
     <View className={` ${className}`}>
       {title && (
-        <Text className="text-3xl font-bold px-4 mb-2 color-slate-200">
+        <Text className="text-3xl font-bold px-4 mb-2 color-slate-100">
           {title}
         </Text>
       )}
